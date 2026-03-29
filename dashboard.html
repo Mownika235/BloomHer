@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BloomHer – Dashboard</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/dashboard.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-logo"><span>🌸</span> BloomHer</div>
+  <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="dashboard.html" class="active">Dashboard</a></li></ul>
+  <div class="nav-actions">
+    <button class="btn-theme" onclick="toggleTheme()">🌙</button>
+    <button class="btn-login" onclick="logout()" style="background:linear-gradient(135deg,#ef4444,#dc2626)">Sign Out</button>
+    <span class="nav-hamburger" onclick="toggleSidebar()">☰</span>
+  </div>
+</nav>
+<div class="dash-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-user">
+      <div class="sidebar-avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" id="sidebarAvatar" alt="User"/></div>
+      <div>
+        <div class="sidebar-name" id="sidebarName">Loading...</div>
+        <div class="sidebar-role">Wellness Member 👑</div>
+        <div class="sidebar-score">⭐ Score: <span id="sidebarScore">72</span></div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section">Main</div>
+      <div class="sidebar-link active" onclick="showPanel('overview')"><span class="sl-icon">🏠</span> Overview</div>
+      <div class="sidebar-link" onclick="showPanel('period')"><span class="sl-icon">🌸</span> Period Tracker</div>
+      <div class="sidebar-link" onclick="showPanel('mood')"><span class="sl-icon">😊</span> Mood &amp; Mental</div>
+      <div class="sidebar-link" onclick="showPanel('fitness')"><span class="sl-icon">🏃‍♀️</span> Fitness</div>
+      <div class="sidebar-link" onclick="showPanel('nutrition')"><span class="sl-icon">🥗</span> Nutrition</div>
+      <div class="sidebar-section">Wellness</div>
+      <div class="sidebar-link" onclick="showPanel('meditation')"><span class="sl-icon">🧘‍♀️</span> Meditation</div>
+      <div class="sidebar-link" onclick="showPanel('journal')"><span class="sl-icon">📓</span> Journal</div>
+      <div class="sidebar-link" onclick="showPanel('chatbot')"><span class="sl-icon">🤖</span> AI Chatbot <span class="sl-badge">AI</span></div>
+      <div class="sidebar-link" onclick="showPanel('community')"><span class="sl-icon">👭</span> Community</div>
+      <div class="sidebar-link" onclick="showPanel('reminders')"><span class="sl-icon">🔔</span> Reminders <span class="sl-badge">3</span></div>
+      <div class="sidebar-section">Account</div>
+      <div class="sidebar-link" onclick="showPanel('achievements')"><span class="sl-icon">🏆</span> Achievements</div>
+      <div class="sidebar-link" onclick="showPanel('profile')"><span class="sl-icon">👤</span> Profile</div>
+    </nav>
+  </aside>
+  <main class="dash-main" id="dashMain">
+    <!-- OVERVIEW -->
+    <div class="dash-panel active" id="panel-overview">
+      <div class="welcome-banner">
+        <div class="welcome-text"><h2 id="welcomeMsg">Good morning!</h2><p>You are on a <strong id="streakDisplay">7-day</strong> streak. Keep it up, Queen!</p></div>
+        <div class="welcome-score"><div class="score-num" id="wellnessScore">72</div><div class="score-label">Wellness Score</div></div>
+      </div>
+      <div class="water-tracker-bar">
+        <div class="water-label">Daily Water Intake</div>
+        <div class="water-glasses" id="waterGlasses"></div>
+        <div class="water-count"><span id="waterCount">0</span>/8 glasses</div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-icon pink">&#128167;</div><div><div class="stat-val" id="waterStat">0/8</div><div class="stat-lbl">Water Glasses</div><div class="stat-trend up">Stay hydrated!</div></div></div>
+        <div class="stat-card"><div class="stat-icon mint">&#127939;</div><div><div class="stat-val">4,280</div><div class="stat-lbl">Steps Today</div><div class="stat-trend up">12% vs yesterday</div></div></div>
+        <div class="stat-card"><div class="stat-icon lavender">&#128522;</div><div><div class="stat-val" id="todayMoodDisplay">Happy</div><div class="stat-lbl">Today Mood</div><div class="stat-trend up">Better than avg</div></div></div>
+        <div class="stat-card"><div class="stat-icon sky">&#128293;</div><div><div class="stat-val" id="streakStat">7</div><div class="stat-lbl">Day Streak</div><div class="stat-trend up">Personal best!</div></div></div>
+      </div>
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="dash-card-header"><div class="dash-card-title">Weekly Wellness</div><span class="dash-card-action" onclick="showPanel('mood')">View all</span></div>
+          <div class="chart-area" id="weeklyChart"></div>
+          <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:0.72rem;color:var(--text-muted);padding:0 4px;"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-header"><div class="dash-card-title">Cycle Overview</div><span class="dash-card-action" onclick="showPanel('period')">Track</span></div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:var(--pink-light);border-radius:14px;"><div><div style="font-size:0.8rem;color:var(--text-muted);">Cycle Day</div><div style="font-size:1.8rem;font-weight:800;color:var(--pink-dark);">14</div></div><div style="font-size:2.5rem;">&#127800;</div></div>
+            <div style="display:flex;gap:10px;"><div style="flex:1;padding:12px;background:var(--mint-light);border-radius:12px;text-align:center;"><div style="font-size:0.72rem;color:var(--text-muted);">Next Period</div><div style="font-size:1rem;font-weight:700;color:#059669;">14 days</div></div><div style="flex:1;padding:12px;background:var(--lavender-light);border-radius:12px;text-align:center;"><div style="font-size:0.72rem;color:var(--text-muted);">Fertile Window</div><div style="font-size:1rem;font-weight:700;color:var(--lavender-dark);">Active</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dash-grid three">
+        <div class="dash-card"><div class="dash-card-header"><div class="dash-card-title">Nutrition Today</div><span class="dash-card-action" onclick="showPanel('nutrition')">Log</span></div><div style="text-align:center;padding:10px 0;"><div style="font-size:2rem;font-weight:800;color:var(--peach);">1,420</div><div style="font-size:0.78rem;color:var(--text-muted);">of 1,800 kcal</div><div style="height:8px;background:var(--border);border-radius:4px;margin:12px 0;overflow:hidden;"><div style="height:100%;width:79%;background:linear-gradient(90deg,var(--peach),var(--pink));border-radius:4px;"></div></div><div style="display:flex;justify-content:space-around;font-size:0.78rem;"><span>Protein <strong>68g</strong></span><span>Carbs <strong>180g</strong></span><span>Fat <strong>52g</strong></span></div></div></div>
+        <div class="dash-card"><div class="dash-card-header"><div class="dash-card-title">Streak</div></div><div class="streak-widget"><div class="streak-fire">&#128293;</div><div class="streak-num" id="streakWidgetNum">7</div><div class="streak-label">Day Streak</div></div></div>
+        <div class="dash-card"><div class="dash-card-header"><div class="dash-card-title">Quick Actions</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"><div class="quick-action" onclick="showPanel('chatbot')"><span>&#129302;</span>Ask AI</div><div class="quick-action" onclick="showPanel('meditation')"><span>&#129497;</span>Meditate</div><div class="quick-action" onclick="showPanel('fitness')"><span>&#128170;</span>Workout</div><div class="quick-action" onclick="showPanel('journal')"><span>&#128211;</span>Journal</div></div></div>
+      </div>
+      <div class="daily-tip-card"><div class="tip-icon">&#128161;</div><div class="tip-content"><div class="tip-label">Today's Wellness Tip</div><div class="tip-text" id="dailyTip">Loading tip...</div></div><button class="tip-refresh" onclick="refreshTip()">&#128260;</button></div>
+    </div>
+
+    <!-- PERIOD TRACKER -->
+    <div class="dash-panel" id="panel-period">
+      <div class="panel-title">Period Tracker</div>
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="dash-card-header"><div class="dash-card-title">Cycle Calendar</div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <button onclick="prevMonth()" class="cal-nav-btn">&#8249;</button>
+            <span id="calMonthLabel" style="font-weight:700;font-size:1rem;"></span>
+            <button onclick="nextMonth()" class="cal-nav-btn">&#8250;</button>
+          </div>
+          <div class="period-calendar" id="periodCalendar">
+            <div class="cal-header">Su</div><div class="cal-header">Mo</div><div class="cal-header">Tu</div><div class="cal-header">We</div><div class="cal-header">Th</div><div class="cal-header">Fr</div><div class="cal-header">Sa</div>
+          </div>
+          <div class="period-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:var(--pink);"></div>Period</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--mint);"></div>Fertile</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--lavender);"></div>Ovulation</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div class="dash-card">
+            <div class="dash-card-title" style="margin-bottom:16px;">Cycle Stats</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div style="padding:16px;background:var(--pink-light);border-radius:14px;text-align:center;"><div style="font-size:1.6rem;font-weight:800;color:var(--pink-dark);">28</div><div style="font-size:0.75rem;color:var(--text-muted);">Avg Cycle Length</div></div>
+              <div style="padding:16px;background:var(--mint-light);border-radius:14px;text-align:center;"><div style="font-size:1.6rem;font-weight:800;color:#059669;">5</div><div style="font-size:0.75rem;color:var(--text-muted);">Period Duration</div></div>
+              <div style="padding:16px;background:var(--lavender-light);border-radius:14px;text-align:center;"><div style="font-size:1.6rem;font-weight:800;color:var(--lavender-dark);">14</div><div style="font-size:0.75rem;color:var(--text-muted);">Days Until Next</div></div>
+              <div style="padding:16px;background:var(--sky-light);border-radius:14px;text-align:center;"><div style="font-size:1.6rem;font-weight:800;color:#0284c7;">Day 14</div><div style="font-size:0.75rem;color:var(--text-muted);">Current Cycle Day</div></div>
+            </div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-title" style="margin-bottom:16px;">Log Period</div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div class="form-group"><label>Start Date</label><input type="date" id="periodStart"/></div>
+              <div class="form-group"><label>Flow Intensity</label><select id="periodFlow"><option>Light</option><option selected>Medium</option><option>Heavy</option></select></div>
+              <div class="form-group"><label>Symptoms</label>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;">
+                  <button class="symptom-btn" onclick="toggleSymptom(this)">Cramps</button>
+                  <button class="symptom-btn" onclick="toggleSymptom(this)">Fatigue</button>
+                  <button class="symptom-btn" onclick="toggleSymptom(this)">Headache</button>
+                  <button class="symptom-btn" onclick="toggleSymptom(this)">Bloating</button>
+                  <button class="symptom-btn" onclick="toggleSymptom(this)">Mood Swings</button>
+                </div>
+              </div>
+              <button class="btn-save" onclick="logPeriod()" style="width:100%;">Save Log</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOOD & MENTAL -->
+    <div class="dash-panel" id="panel-mood">
+      <div class="panel-title">Mood &amp; Mental Health</div>
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="dash-card-header"><div class="dash-card-title">How are you feeling today?</div></div>
+          <div class="mood-grid">
+            <button class="mood-btn" onclick="selectMood(this,'Amazing')"><span class="mood-emoji">&#128516;</span>Amazing</button>
+            <button class="mood-btn" onclick="selectMood(this,'Happy')"><span class="mood-emoji">&#128522;</span>Happy</button>
+            <button class="mood-btn" onclick="selectMood(this,'Neutral')"><span class="mood-emoji">&#128528;</span>Neutral</button>
+            <button class="mood-btn" onclick="selectMood(this,'Sad')"><span class="mood-emoji">&#128532;</span>Sad</button>
+            <button class="mood-btn" onclick="selectMood(this,'Stressed')"><span class="mood-emoji">&#128548;</span>Stressed</button>
+          </div>
+          <div style="margin-top:16px;">
+            <textarea id="moodNote" placeholder="Write about your feelings..." style="width:100%;padding:12px;border-radius:12px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-family:inherit;font-size:0.85rem;resize:none;height:80px;"></textarea>
+            <button class="btn-save" onclick="saveMood()" style="margin-top:10px;width:100%;">Save Mood</button>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-header"><div class="dash-card-title">Mood This Week</div></div>
+          <div class="mood-history">
+            <div class="mood-bar-row"><span class="mood-bar-label">Mon</span><div class="mood-bar-track"><div class="mood-bar-fill" style="width:90%;background:var(--mint);"></div></div><span style="font-size:0.75rem;margin-left:8px;">&#128516;</span></div>
+            <div class="mood-bar-row"><span class="mood-bar-label">Tue</span><div class="mood-bar-track"><div class="mood-bar-fill" style="width:75%;background:var(--sky);"></div></div><span style="font-size:0.75rem;margin-left:8px;">&#128522;</span></div>
+            <div class="mood-bar-row"><span class="mood-bar-label">Wed</span><div class="mood-bar-track"><div class="mood-bar-fill" style="width:50%;background:var(--peach);"></div></div><span style="font-size:0.75rem;margin-left:8px;">&#128528;</span></div>
+            <div class="mood-bar-row"><span class="mood-bar-label">Thu</span><div class="mood-bar-track"><div class="mood-bar-fill" style="width:80%;background:var(--mint);"></div></div><span style="font-size:0.75rem;margin-left:8px;">&#128522;</span></div>
+            <div class="mood-bar-row"><span class="mood-bar-label">Fri</span><div class="mood-bar-track"><div class="mood-bar-fill" style="width:65%;background:var(--lavender);"></div></div><span style="font-size:0.75rem;margin-left:8px;">&#128522;</span></div>
+            <div class="mood-bar-row"><span class="mood-bar-label">Sat</span><div class="mood-bar-track"><div class="mood-bar-fill" style="width:85%;background:var(--mint);"></div></div><span style="font-size:0.75rem;margin-left:8px;">&#128516;</span></div>
+            <div class="mood-bar-row"><span class="mood-bar-label">Today</span><div class="mood-bar-track"><div class="mood-bar-fill" style="width:70%;background:var(--pink);"></div></div><span style="font-size:0.75rem;margin-left:8px;" id="todayMoodEmoji">&#128522;</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="dash-card" style="margin-top:24px;">
+        <div class="dash-card-header"><div class="dash-card-title">Mental Health Resources</div></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;">
+          <div class="resource-card" style="background:var(--lavender-light);" onclick="alert('4-7-8 Breathing: Inhale 4s, Hold 7s, Exhale 8s. Repeat 4 times.')"><div style="font-size:1.8rem;margin-bottom:8px;">&#129754;</div><div style="font-weight:700;font-size:0.9rem;">Breathing Exercise</div><div style="font-size:0.78rem;color:var(--text-muted);">4-7-8 technique</div></div>
+          <div class="resource-card" style="background:var(--mint-light);" onclick="showPanel('journal')"><div style="font-size:1.8rem;margin-bottom:8px;">&#128211;</div><div style="font-weight:700;font-size:0.9rem;">Gratitude Journal</div><div style="font-size:0.78rem;color:var(--text-muted);">3 things daily</div></div>
+          <div class="resource-card" style="background:var(--sky-light);" onclick="showPanel('meditation')"><div style="font-size:1.8rem;margin-bottom:8px;">&#127925;</div><div style="font-weight:700;font-size:0.9rem;">Guided Meditation</div><div style="font-size:0.78rem;color:var(--text-muted);">Calming sessions</div></div>
+          <div class="resource-card" style="background:var(--pink-light);" onclick="showPanel('chatbot')"><div style="font-size:1.8rem;margin-bottom:8px;">&#129302;</div><div style="font-weight:700;font-size:0.9rem;">Talk to AI</div><div style="font-size:0.78rem;color:var(--text-muted);">24/7 support</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FITNESS -->
+    <div class="dash-panel" id="panel-fitness">
+      <div class="panel-title">Fitness Tracker</div>
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="dash-card-header"><div class="dash-card-title">Today's Workout</div><span class="dash-card-action" id="workoutProgress">0/4 done</span></div>
+          <div class="workout-list" id="workoutList">
+            <div class="workout-item" onclick="toggleWorkout(this)"><span class="workout-icon">&#129497;</span><div class="workout-info"><div class="workout-name">Morning Yoga</div><div class="workout-meta">20 min · Beginner · 120 cal</div></div><div class="workout-check">&#10003;</div></div>
+            <div class="workout-item" onclick="toggleWorkout(this)"><span class="workout-icon">&#127939;</span><div class="workout-info"><div class="workout-name">Cardio Walk</div><div class="workout-meta">30 min · Moderate · 180 cal</div></div><div class="workout-check">&#10003;</div></div>
+            <div class="workout-item" onclick="toggleWorkout(this)"><span class="workout-icon">&#128170;</span><div class="workout-info"><div class="workout-name">Strength Training</div><div class="workout-meta">25 min · Intermediate · 200 cal</div></div><div class="workout-check">&#10003;</div></div>
+            <div class="workout-item" onclick="toggleWorkout(this)"><span class="workout-icon">&#127754;</span><div class="workout-info"><div class="workout-name">Cool Down Stretch</div><div class="workout-meta">10 min · Easy · 40 cal</div></div><div class="workout-check">&#10003;</div></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div class="dash-card">
+            <div class="dash-card-title" style="margin-bottom:16px;">Weekly Activity</div>
+            <div class="chart-area" id="fitnessChart"></div>
+            <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:0.72rem;color:var(--text-muted);"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-title" style="margin-bottom:16px;">Fitness Goals</div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div><div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:4px;"><span>Steps Goal</span><span style="font-weight:700;">4,280 / 8,000</span></div><div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden;"><div style="height:100%;width:54%;background:var(--mint);border-radius:4px;"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:4px;"><span>Calories Burned</span><span style="font-weight:700;">320 / 500 kcal</span></div><div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden;"><div style="height:100%;width:64%;background:var(--peach);border-radius:4px;"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:4px;"><span>Active Minutes</span><span style="font-weight:700;">45 / 60 min</span></div><div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden;"><div style="height:100%;width:75%;background:var(--lavender);border-radius:4px;"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dash-card" style="margin-top:24px;">
+        <div class="dash-card-header"><div class="dash-card-title">Yoga and Guided Sessions</div></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">
+          <div class="yoga-card" onclick="showToast('Starting Sun Salutation session!')"><div class="yoga-thumb">&#127749;</div><div class="yoga-name">Sun Salutation</div><div class="yoga-meta">15 min · Beginner</div></div>
+          <div class="yoga-card" onclick="showToast('Starting Power Yoga session!')"><div class="yoga-thumb">&#128170;</div><div class="yoga-name">Power Yoga</div><div class="yoga-meta">30 min · Advanced</div></div>
+          <div class="yoga-card" onclick="showToast('Starting Yin Yoga session!')"><div class="yoga-thumb">&#127769;</div><div class="yoga-name">Yin Yoga</div><div class="yoga-meta">45 min · All levels</div></div>
+          <div class="yoga-card" onclick="showToast('Starting Prenatal Yoga session!')"><div class="yoga-thumb">&#129328;</div><div class="yoga-name">Prenatal Yoga</div><div class="yoga-meta">20 min · Gentle</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NUTRITION -->
+    <div class="dash-panel" id="panel-nutrition">
+      <div class="panel-title">Nutrition Planner</div>
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="dash-card-header"><div class="dash-card-title">Today's Meals</div></div>
+          <div class="nutrition-macros">
+            <div class="macro-card"><div class="macro-val" style="color:var(--peach);">1,420</div><div class="macro-lbl">Calories</div><div class="macro-prog"><div class="macro-fill" style="width:79%;background:var(--peach);"></div></div></div>
+            <div class="macro-card"><div class="macro-val" style="color:var(--pink-dark);">68g</div><div class="macro-lbl">Protein</div><div class="macro-prog"><div class="macro-fill" style="width:68%;background:var(--pink);"></div></div></div>
+            <div class="macro-card"><div class="macro-val" style="color:var(--lavender-dark);">180g</div><div class="macro-lbl">Carbs</div><div class="macro-prog"><div class="macro-fill" style="width:72%;background:var(--lavender);"></div></div></div>
+          </div>
+          <div class="meal-list">
+            <div class="meal-item"><span class="meal-icon">&#127749;</span><div class="meal-name">Breakfast</div><span class="meal-cal">Oats + Banana · 380 kcal</span></div>
+            <div class="meal-item"><span class="meal-icon">&#9728;</span><div class="meal-name">Lunch</div><span class="meal-cal">Dal Rice + Salad · 520 kcal</span></div>
+            <div class="meal-item"><span class="meal-icon">&#127769;</span><div class="meal-name">Dinner</div><span class="meal-cal">Roti + Sabzi · 420 kcal</span></div>
+            <div class="meal-item"><span class="meal-icon">&#127822;</span><div class="meal-name">Snacks</div><span class="meal-cal">Fruits + Nuts · 100 kcal</span></div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-header"><div class="dash-card-title">Diet Plans</div></div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div class="diet-plan-card" onclick="showToast('Weight Loss Plan activated!')"><div class="diet-plan-icon">&#9878;</div><div><div style="font-weight:700;font-size:0.9rem;">Weight Loss Plan</div><div style="font-size:0.78rem;color:var(--text-muted);">1,400 kcal · High protein</div></div><span class="diet-badge">Active</span></div>
+            <div class="diet-plan-card" onclick="showToast('PCOS Care Plan selected!')"><div class="diet-plan-icon">&#127800;</div><div><div style="font-weight:700;font-size:0.9rem;">PCOS Care Plan</div><div style="font-size:0.78rem;color:var(--text-muted);">Anti-inflammatory diet</div></div><span class="diet-badge inactive">Select</span></div>
+            <div class="diet-plan-card" onclick="showToast('Energy Boost Plan selected!')"><div class="diet-plan-icon">&#9889;</div><div><div style="font-weight:700;font-size:0.9rem;">Energy Boost Plan</div><div style="font-size:0.78rem;color:var(--text-muted);">Iron and B12 rich foods</div></div><span class="diet-badge inactive">Select</span></div>
+            <div class="diet-plan-card" onclick="showToast('Pregnancy Nutrition Plan selected!')"><div class="diet-plan-icon">&#129328;</div><div><div style="font-weight:700;font-size:0.9rem;">Pregnancy Nutrition</div><div style="font-size:0.78rem;color:var(--text-muted);">Folate and calcium rich</div></div><span class="diet-badge inactive">Select</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEDITATION -->
+    <div class="dash-panel" id="panel-meditation">
+      <div class="panel-title">Guided Meditation</div>
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="meditation-player">
+            <div class="med-title" id="medTitle">Morning Calm</div>
+            <div class="med-subtitle" id="medSubtitle">Breathe in peace, breathe out stress</div>
+            <div class="med-timer" id="medTimer">10:00</div>
+            <div class="med-controls">
+              <button class="med-btn" onclick="restartMed()">&#9198;</button>
+              <button class="med-btn play" id="medPlayBtn" onclick="toggleMed()">&#9654;</button>
+              <button class="med-btn" onclick="skipMed()">&#9197;</button>
+            </div>
+            <div class="med-progress"><div class="med-progress-fill" id="medProgressFill"></div></div>
+          </div>
+          <div class="meditation-sessions" id="medSessions">
+            <div class="med-session active" onclick="selectMed(this,'Morning Calm','Start your day with peace',600)"><div class="med-session-icon">&#127749;</div><div class="med-session-name">Morning Calm</div><div class="med-session-dur">10 min</div></div>
+            <div class="med-session" onclick="selectMed(this,'Stress Relief','Release tension and anxiety',300)"><div class="med-session-icon">&#127807;</div><div class="med-session-name">Stress Relief</div><div class="med-session-dur">5 min</div></div>
+            <div class="med-session" onclick="selectMed(this,'Deep Sleep','Drift into restful sleep',900)"><div class="med-session-icon">&#127769;</div><div class="med-session-name">Deep Sleep</div><div class="med-session-dur">15 min</div></div>
+            <div class="med-session" onclick="selectMed(this,'Body Scan','Full body relaxation',480)"><div class="med-session-icon">&#10024;</div><div class="med-session-name">Body Scan</div><div class="med-session-dur">8 min</div></div>
+            <div class="med-session" onclick="selectMed(this,'Loving Kindness','Cultivate compassion',420)"><div class="med-session-icon">&#128151;</div><div class="med-session-name">Loving Kindness</div><div class="med-session-dur">7 min</div></div>
+            <div class="med-session" onclick="selectMed(this,'Focus Flow','Sharpen your concentration',360)"><div class="med-session-icon">&#127919;</div><div class="med-session-name">Focus Flow</div><div class="med-session-dur">6 min</div></div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-header"><div class="dash-card-title">Meditation Stats</div></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+            <div style="padding:16px;background:var(--lavender-light);border-radius:14px;text-align:center;"><div style="font-size:1.6rem;font-weight:800;color:var(--lavender-dark);">42</div><div style="font-size:0.75rem;color:var(--text-muted);">Sessions Total</div></div>
+            <div style="padding:16px;background:var(--mint-light);border-radius:14px;text-align:center;"><div style="font-size:1.6rem;font-weight:800;color:#059669;">7h 20m</div><div style="font-size:0.75rem;color:var(--text-muted);">Total Time</div></div>
+            <div style="padding:16px;background:var(--pink-light);border-radius:14px;text-align:center;"><div style="font-size:1.6rem;font-weight:800;color:var(--pink-dark);">12</div><div style="font-size:0.75rem;color:var(--text-muted);">Day Streak</div></div>
+            <div style="padding:16px;background:var(--sky-light);border-radius:14px;text-align:center;"><div style="font-size:1.6rem;font-weight:800;color:#0284c7;">8.5</div><div style="font-size:0.75rem;color:var(--text-muted);">Avg Mood After</div></div>
+          </div>
+          <div style="padding:16px;background:var(--gradient-soft);border-radius:14px;">
+            <div style="font-weight:700;font-size:0.9rem;margin-bottom:8px;">Quick Breathing Exercise</div>
+            <div style="font-size:0.82rem;color:var(--text-muted);line-height:1.8;"><strong>4-7-8 Technique:</strong><br/>1. Inhale through nose for <strong>4 seconds</strong><br/>2. Hold your breath for <strong>7 seconds</strong><br/>3. Exhale through mouth for <strong>8 seconds</strong><br/>Repeat 4 times for instant calm.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JOURNAL -->
+    <div class="dash-panel" id="panel-journal">
+      <div class="panel-title">Wellness Journal</div>
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="dash-card-header"><div class="dash-card-title">New Entry</div></div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div class="form-group"><label>Entry Title</label><input type="text" id="journalTitle" placeholder="What's on your mind today?"/></div>
+            <div class="form-group"><label>How are you feeling?</label>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;">
+                <button class="symptom-btn" onclick="toggleSymptom(this)">Grateful</button>
+                <button class="symptom-btn" onclick="toggleSymptom(this)">Motivated</button>
+                <button class="symptom-btn" onclick="toggleSymptom(this)">Peaceful</button>
+                <button class="symptom-btn" onclick="toggleSymptom(this)">Sad</button>
+                <button class="symptom-btn" onclick="toggleSymptom(this)">Anxious</button>
+              </div>
+            </div>
+            <div class="form-group"><label>Your Thoughts</label><textarea id="journalText" placeholder="Write freely... this is your safe space" style="height:120px;resize:none;"></textarea></div>
+            <div class="form-group"><label>3 Things I'm Grateful For Today</label>
+              <input type="text" id="gratitude1" placeholder="1. I am grateful for..."/>
+              <input type="text" id="gratitude2" placeholder="2. I am grateful for..." style="margin-top:8px;"/>
+              <input type="text" id="gratitude3" placeholder="3. I am grateful for..." style="margin-top:8px;"/>
+            </div>
+            <button class="btn-save" onclick="saveJournal()" style="width:100%;">Save Journal Entry</button>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-header"><div class="dash-card-title">Past Entries</div></div>
+          <div id="journalEntries" style="display:flex;flex-direction:column;gap:12px;max-height:500px;overflow-y:auto;">
+            <div class="journal-entry-card"><div class="journal-entry-date">March 28, 2026</div><div class="journal-entry-title">Feeling grateful today</div><div class="journal-entry-preview">Had a wonderful morning yoga session. Feeling energized and ready for the day...</div></div>
+            <div class="journal-entry-card"><div class="journal-entry-date">March 27, 2026</div><div class="journal-entry-title">Challenging day but I got through it</div><div class="journal-entry-preview">Work was stressful but I remembered to breathe and take breaks. Proud of myself...</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI CHATBOT -->
+    <div class="dash-panel" id="panel-chatbot">
+      <div class="panel-title">AI Wellness Assistant</div>
+      <div class="dash-grid">
+        <div class="dash-card" style="grid-column:1/-1;">
+          <div class="dash-card-header"><div class="dash-card-title">Chat with BloomHer AI</div><span style="font-size:0.78rem;color:var(--text-muted);">Available 24/7 for support</span></div>
+          <div class="chatbot-window">
+            <div class="chat-messages" id="chatMessages">
+              <div class="chat-msg bot"><div class="chat-avatar"><img src="https://images.unsplash.com/photo-1559181567-c3190ca9d5db?w=60&h=60&fit=crop" alt="AI"/></div><div class="chat-bubble">Hello! I'm your BloomHer AI wellness assistant. I'm here to help with mental health support, fitness advice, nutrition tips, and lifestyle guidance. How can I support you today?</div></div>
+            </div>
+            <div class="chat-quick-btns">
+              <button onclick="quickChat('I am feeling stressed')" class="chat-quick-btn">Feeling stressed</button>
+              <button onclick="quickChat('Give me yoga tips')" class="chat-quick-btn">Yoga tips</button>
+              <button onclick="quickChat('Period cramp relief')" class="chat-quick-btn">Period cramps</button>
+              <button onclick="quickChat('Healthy meal ideas')" class="chat-quick-btn">Meal ideas</button>
+              <button onclick="quickChat('Help me sleep better')" class="chat-quick-btn">Better sleep</button>
+            </div>
+            <div class="chat-input-row">
+              <input type="text" class="chat-input" id="chatInput" placeholder="Ask me anything about your wellness..." onkeydown="if(event.key==='Enter')sendChat()"/>
+              <button class="chat-send" onclick="sendChat()">&#10148;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMMUNITY -->
+    <div class="dash-panel" id="panel-community">
+      <div class="panel-title">Community Space</div>
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="dash-card-header"><div class="dash-card-title">Share Your Story</div></div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+              <label style="font-size:0.82rem;font-weight:600;display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" id="anonPost" style="accent-color:var(--pink-dark);"/> Post anonymously</label>
+            </div>
+            <textarea id="postText" placeholder="Share your wellness journey, ask for advice, or offer support..." style="width:100%;padding:12px;border-radius:12px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-family:inherit;font-size:0.85rem;resize:none;height:100px;"></textarea>
+            <button class="btn-save" onclick="addPost()" style="width:100%;">Share with Community</button>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-header"><div class="dash-card-title">Community Feed</div></div>
+          <div id="communityFeed" style="max-height:400px;overflow-y:auto;">
+            <div class="community-post"><div class="post-header"><div class="post-avatar"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=face" alt="User"/></div><div><div class="post-author">Ananya R.</div><div class="post-time">2 hours ago</div></div></div><div class="post-text">Just completed my first 30-day yoga challenge! The period tracker helped me understand my energy levels throughout the month. Highly recommend!</div><div class="post-actions"><span class="post-action" onclick="likePost(this)">&#10084; <span>24</span></span><span class="post-action">&#128172; <span>5</span> replies</span></div></div>
+            <div class="community-post"><div class="post-header"><div class="post-avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" alt="User"/></div><div><div class="post-author">Anonymous</div><div class="post-time">5 hours ago</div></div></div><div class="post-text">Struggling with PCOS and feeling overwhelmed. The nutrition plans here have been a game changer. Anyone else managing PCOS through diet?</div><div class="post-actions"><span class="post-action" onclick="likePost(this)">&#10084; <span>41</span></span><span class="post-action">&#128172; <span>12</span> replies</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REMINDERS -->
+    <div class="dash-panel" id="panel-reminders">
+      <div class="panel-title">Reminders</div>
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="dash-card-header"><div class="dash-card-title">Add Reminder</div></div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div class="form-group"><label>Reminder Title</label><input type="text" id="remTitle" placeholder="e.g. Take iron supplement"/></div>
+            <div class="form-group"><label>Time</label><input type="time" id="remTime" value="08:00"/></div>
+            <div class="form-group"><label>Frequency</label><select id="remFreq"><option>Daily</option><option>Weekly</option><option>Monthly</option><option>Once</option></select></div>
+            <div class="form-group"><label>Icon</label>
+              <div id="remIconPicker" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+                <button class="symptom-btn active" onclick="pickIcon(this,'pill')">Pill</button>
+                <button class="symptom-btn" onclick="pickIcon(this,'water')">Water</button>
+                <button class="symptom-btn" onclick="pickIcon(this,'yoga')">Yoga</button>
+                <button class="symptom-btn" onclick="pickIcon(this,'sleep')">Sleep</button>
+                <button class="symptom-btn" onclick="pickIcon(this,'walk')">Walk</button>
+              </div>
+            </div>
+            <button class="btn-save" onclick="addReminder()" style="width:100%;">Add Reminder</button>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-header"><div class="dash-card-title">Active Reminders</div></div>
+          <div class="reminder-list">
+            <div class="reminder-item"><span class="reminder-icon">&#128138;</span><div class="reminder-info"><div class="reminder-title">Iron Supplement</div><div class="reminder-time">8:00 AM · Daily</div></div><div class="reminder-toggle on" onclick="toggleReminder(this)"></div></div>
+            <div class="reminder-item"><span class="reminder-icon">&#128167;</span><div class="reminder-info"><div class="reminder-title">Drink Water</div><div class="reminder-time">Every 2 hours · Daily</div></div><div class="reminder-toggle on" onclick="toggleReminder(this)"></div></div>
+            <div class="reminder-item"><span class="reminder-icon">&#129497;</span><div class="reminder-info"><div class="reminder-title">Morning Yoga</div><div class="reminder-time">7:00 AM · Daily</div></div><div class="reminder-toggle" onclick="toggleReminder(this)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACHIEVEMENTS -->
+    <div class="dash-panel" id="panel-achievements">
+      <div class="panel-title">Achievements</div>
+      <div class="dash-card" style="margin-bottom:24px;">
+        <div class="dash-card-header"><div class="dash-card-title">Your Progress Badges</div><span style="font-size:0.82rem;color:var(--text-muted);">8 of 16 earned</span></div>
+        <div class="badges-grid">
+          <div class="badge-item earned"><div class="badge-emoji">&#127775;</div><div class="badge-name">First Step</div><div class="badge-desc">Joined BloomHer</div></div>
+          <div class="badge-item earned"><div class="badge-emoji">&#128167;</div><div class="badge-name">Hydration Hero</div><div class="badge-desc">8 glasses 7 days</div></div>
+          <div class="badge-item earned"><div class="badge-emoji">&#128293;</div><div class="badge-name">7-Day Streak</div><div class="badge-desc">Logged 7 days</div></div>
+          <div class="badge-item earned"><div class="badge-emoji">&#129497;</div><div class="badge-name">Yoga Starter</div><div class="badge-desc">5 yoga sessions</div></div>
+          <div class="badge-item earned"><div class="badge-emoji">&#128211;</div><div class="badge-name">Journaler</div><div class="badge-desc">10 journal entries</div></div>
+          <div class="badge-item earned"><div class="badge-emoji">&#127807;</div><div class="badge-name">Zen Master</div><div class="badge-desc">30 min meditation</div></div>
+          <div class="badge-item earned"><div class="badge-emoji">&#127869;</div><div class="badge-name">Nutrition Pro</div><div class="badge-desc">Logged 7 meals</div></div>
+          <div class="badge-item earned"><div class="badge-emoji">&#128150;</div><div class="badge-name">Community Star</div><div class="badge-desc">First post shared</div></div>
+          <div class="badge-item locked"><div class="badge-emoji">&#128081;</div><div class="badge-name">Queen</div><div class="badge-desc">30-day streak</div></div>
+          <div class="badge-item locked"><div class="badge-emoji">&#127942;</div><div class="badge-name">Champion</div><div class="badge-desc">100 workouts</div></div>
+          <div class="badge-item locked"><div class="badge-emoji">&#127775;</div><div class="badge-name">Wellness Guru</div><div class="badge-desc">Score 90+</div></div>
+          <div class="badge-item locked"><div class="badge-emoji">&#128170;</div><div class="badge-name">Iron Woman</div><div class="badge-desc">60 days active</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="dash-panel" id="panel-profile">
+      <div class="panel-title">My Profile</div>
+      <div class="profile-header">
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face" alt="Profile"/></div>
+          <button class="profile-edit-btn" onclick="showToast('Photo upload coming soon!')">&#9998;</button>
+        </div>
+        <div class="profile-info">
+          <h2 id="profileName">Loading...</h2>
+          <p id="profileEmail">loading@email.com</p>
+          <div class="profile-stats">
+            <div class="profile-stat"><div class="profile-stat-val">7</div><div class="profile-stat-lbl">Day Streak</div></div>
+            <div class="profile-stat"><div class="profile-stat-val">72</div><div class="profile-stat-lbl">Wellness Score</div></div>
+            <div class="profile-stat"><div class="profile-stat-val">8</div><div class="profile-stat-lbl">Badges</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-card-header"><div class="dash-card-title">Edit Profile</div></div>
+        <div class="profile-form">
+          <div class="form-group"><label>First Name</label><input type="text" id="pfFirst" placeholder="First name"/></div>
+          <div class="form-group"><label>Last Name</label><input type="text" id="pfLast" placeholder="Last name"/></div>
+          <div class="form-group"><label>Age</label><input type="number" id="pfAge" placeholder="25" min="13" max="100"/></div>
+          <div class="form-group"><label>Weight (kg)</label><input type="number" id="pfWeight" placeholder="55"/></div>
+          <div class="form-group"><label>Height (cm)</label><input type="number" id="pfHeight" placeholder="165"/></div>
+          <div class="form-group"><label>Health Goal</label><select id="pfGoal"><option>Weight Loss</option><option>PCOS Management</option><option>General Wellness</option><option>Pregnancy Prep</option><option>Stress Relief</option></select></div>
+          <div class="form-group full"><label>Bio</label><textarea id="pfBio" placeholder="Tell us about your wellness journey..." style="height:80px;resize:none;"></textarea></div>
+        </div>
+        <button class="btn-save" onclick="saveProfile()" style="margin-top:20px;">Save Profile</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- SOS BUTTON -->
+<button class="sos-btn" onclick="triggerSOS()" title="Emergency SOS">SOS</button>
+
+<script src="js/app.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
