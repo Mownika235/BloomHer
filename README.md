@@ -3,3 +3,6 @@ A modern and responsive Women Wellness Website designed to support overall wellb
 The application provides a personalized dashboard where users can track daily activities such as mood, water intake, sleep, and menstrual cycles. It also includes features like fitness and yoga guidance, healthy diet suggestions, mental health support tools, and an AI-powered assistant for personalized recommendations.
 
 With a calming UI design, smooth user experience, and community support features, this platform empowers women to build healthy habits and lead a balanced lifestyle.
+
+
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/ca7ebc03-7261-4719-b925-279e68599d86" />
