@@ -1,1 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BloomHer – Women's Health & Wellness</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- Floating orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-logo"><span>🌸</span> BloomHer</div>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#wellness">Wellness</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-music" id="musicBtn" onclick="toggleMusic()" title="Toggle calm music">🎵</button>
+    <button class="btn-theme" onclick="toggleTheme()" title="Toggle dark mode">🌙</button>
+    <a href="login.html" class="btn-login">Sign In</a>
+    <span class="nav-hamburger" onclick="toggleMenu()">☰</span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 Home</a>
+  <a href="#features">✨ Features</a>
+  <a href="#wellness">💚 Wellness</a>
+  <a href="#about">ℹ️ About</a>
+  <a href="#contact">📞 Contact</a>
+  <a href="login.html">🔐 Sign In</a>
+</div>
+
+<!-- DAILY QUOTE BANNER -->
+<div class="quote-banner" id="quoteBanner">
+  <span class="quote-icon">💬</span>
+  <span id="dailyQuote">Loading your daily inspiration...</span>
+  <button onclick="this.parentElement.style.display='none'" class="quote-close">✕</button>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge"><span>🌺</span> Your Wellness Journey Starts Here</div>
+    <h1>Empower Your<br/><span>Mind, Body</span><br/>&amp; Soul</h1>
+    <p>A holistic platform for physical health, mental wellness, nutrition, fitness, and AI-powered support — designed with love, for you.</p>
+    <div class="hero-btns">
+      <a href="login.html" class="btn-primary">🚀 Get Started Free</a>
+      <a href="#features" class="btn-secondary">✨ Explore Features</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><span class="trust-num">10K+</span><span class="trust-lbl">Women Empowered</span></div>
+      <div class="trust-divider"></div>
+      <div class="trust-item"><span class="trust-num">4.9★</span><span class="trust-lbl">App Rating</span></div>
+      <div class="trust-divider"></div>
+      <div class="trust-item"><span class="trust-num">24/7</span><span class="trust-lbl">AI Support</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-collage">
+      <div class="collage-main">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=500&fit=crop&crop=face" alt="Wellness woman"/>
+      </div>
+      <div class="collage-card"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=200&h=200&fit=crop" alt="Yoga"/></div>
+      <div class="collage-card"><img src="https://images.unsplash.com/photo-1490750967868-88df5691cc5e?w=200&h=200&fit=crop" alt="Flowers"/></div>
+      <div class="collage-card"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face" alt="Happy woman"/></div>
+      <div class="collage-card"><img src="https://images.unsplash.com/photo-1559181567-c3190ca9d5db?w=200&h=200&fit=crop" alt="Healthy food"/></div>
+      <div class="collage-badge"><span class="badge-icon">💪</span> 10K+ Active Users</div>
+      <div class="collage-badge"><span class="badge-icon">⭐</span> 4.9 Rated</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES STRIP -->
+<div class="features-strip">
+  <div class="feature-item"><span class="fi">🧠</span><span>Mental Health</span></div>
+  <div class="feature-item"><span class="fi">🥗</span><span>Nutrition Plans</span></div>
+  <div class="feature-item"><span class="fi">🏃‍♀️</span><span>Fitness Routines</span></div>
+  <div class="feature-item"><span class="fi">🤖</span><span>AI Chatbot</span></div>
+  <div class="feature-item"><span class="fi">📊</span><span>Health Analytics</span></div>
+  <div class="feature-item"><span class="fi">🏆</span><span>Achievements</span></div>
+  <div class="feature-item"><span class="fi">🌸</span><span>Period Tracker</span></div>
+  <div class="feature-item"><span class="fi">🧘‍♀️</span><span>Meditation</span></div>
+</div>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-item animate-on-scroll"><div class="stat-num" data-target="10000">0</div><div class="stat-label">Women Empowered</div></div>
+    <div class="stat-item animate-on-scroll"><div class="stat-num" data-target="500">0</div><div class="stat-label">Wellness Plans</div></div>
+    <div class="stat-item animate-on-scroll"><div class="stat-num" data-target="98">0</div><div class="stat-label">% Satisfaction Rate</div></div>
+    <div class="stat-item animate-on-scroll"><div class="stat-num">24/7</div><div class="stat-label">AI Support Available</div></div>
+  </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section class="section" id="features">
+  <div class="section-header">
+    <div class="section-tag">✨ Everything You Need</div>
+    <h2>Your Complete Wellness Companion</h2>
+    <p>From physical health to emotional support — BloomHer has every aspect of your wellbeing covered.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card animate-on-scroll">
+      <div class="feature-card-icon" style="background:var(--pink-light);">🧠</div>
+      <h3>Mental Wellness</h3>
+      <p>Mood tracking, journaling, stress relief activities, and guided meditation for a calmer mind.</p>
+      <a href="login.html" class="feature-link">Explore →</a>
+    </div>
+    <div class="feature-card animate-on-scroll">
+      <div class="feature-card-icon" style="background:var(--mint-light);">🏃‍♀️</div>
+      <h3>Fitness & Yoga</h3>
+      <p>Beginner to advanced workout routines, yoga sessions, and daily movement goals.</p>
+      <a href="login.html" class="feature-link">Explore →</a>
+    </div>
+    <div class="feature-card animate-on-scroll">
+      <div class="feature-card-icon" style="background:var(--peach-light);">🥗</div>
+      <h3>Nutrition Planner</h3>
+      <p>Personalized meal plans, diet charts for PCOS, weight goals, and healthy recipe ideas.</p>
+      <a href="login.html" class="feature-link">Explore →</a>
+    </div>
+    <div class="feature-card animate-on-scroll">
+      <div class="feature-card-icon" style="background:var(--lavender-light);">🌸</div>
+      <h3>Period Tracker</h3>
+      <p>Smart cycle calendar, symptom logging, fertile window predictions, and hormonal insights.</p>
+      <a href="login.html" class="feature-link">Explore →</a>
+    </div>
+    <div class="feature-card animate-on-scroll">
+      <div class="feature-card-icon" style="background:var(--sky-light);">🤖</div>
+      <h3>AI Wellness Assistant</h3>
+      <p>24/7 chatbot for mental health support, fitness advice, nutrition tips, and lifestyle guidance.</p>
+      <a href="login.html" class="feature-link">Explore →</a>
+    </div>
+    <div class="feature-card animate-on-scroll">
+      <div class="feature-card-icon" style="background:var(--pink-light);">👭</div>
+      <h3>Community Space</h3>
+      <p>A safe, anonymous forum for women to share experiences, support each other, and grow together.</p>
+      <a href="login.html" class="feature-link">Explore →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WELLNESS SHOWCASE -->
+<section class="section" id="wellness" style="background:var(--gradient-soft);">
+  <div class="section-header">
+    <div class="section-tag">💚 Holistic Approach</div>
+    <h2>Wellness for Every Part of You</h2>
+    <p>We believe true wellness is a balance of body, mind, and soul.</p>
+  </div>
+  <div class="wellness-grid">
+    <div class="wellness-card animate-on-scroll">
+      <div class="wellness-card-img">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=400&fit=crop" alt="Meditation"/>
+        <div class="card-tag">🧘‍♀️ Mindfulness</div>
+      </div>
+      <div class="wellness-card-body">
+        <h3>Guided Meditation & Breathwork</h3>
+        <p>Calm your mind with curated meditation sessions, breathing exercises, and sleep stories designed for women.</p>
+      </div>
+    </div>
+    <div class="wellness-card animate-on-scroll">
+      <div class="wellness-card-img">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop" alt="Fitness"/>
+        <div class="card-tag">💪 Fitness</div>
+      </div>
+      <div class="wellness-card-body">
+        <h3>Home Workouts & Yoga</h3>
+        <p>No gym needed. Follow structured routines from beginner yoga to HIIT, all from the comfort of your home.</p>
+      </div>
+    </div>
+    <div class="wellness-card animate-on-scroll">
+      <div class="wellness-card-img">
+        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop" alt="Nutrition"/>
+        <div class="card-tag">🥗 Nutrition</div>
+      </div>
+      <div class="wellness-card-body">
+        <h3>Smart Nutrition Planning</h3>
+        <p>Get personalized meal plans based on your health goals — weight loss, PCOS management, energy boost, and more.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="section-header">
+    <div class="section-tag">🚀 How It Works</div>
+    <h2>Start Your Journey in 3 Simple Steps</h2>
+  </div>
+  <div class="how-grid">
+    <div class="how-img">
+      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&h=500&fit=crop&crop=face" alt="Woman using app"/>
+    </div>
+    <div class="how-steps">
+      <div class="how-step animate-on-scroll">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Create Your Free Account</h4>
+          <p>Sign up in seconds. Tell us about your health goals and we'll personalize your experience from day one.</p>
+        </div>
+      </div>
+      <div class="how-step animate-on-scroll">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Set Your Wellness Goals</h4>
+          <p>Choose from fitness, nutrition, mental health, or cycle tracking. Your dashboard adapts to what matters most to you.</p>
+        </div>
+      </div>
+      <div class="how-step animate-on-scroll">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Track, Grow & Thrive</h4>
+          <p>Log daily habits, chat with your AI assistant, earn badges, and watch your wellness score climb every week.</p>
+        </div>
+      </div>
+      <a href="login.html" class="btn-primary" style="margin-top:8px;display:inline-flex;">🌸 Join Now — It's Free</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-header">
+    <div class="section-tag">💗 Real Stories</div>
+    <h2>Women Who Bloomed with BloomHer</h2>
+    <p>Thousands of women have transformed their wellness journey with us.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card animate-on-scroll">
+      <div class="testimonial-header">
+        <div class="testimonial-avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" alt="Priya"/></div>
+        <div class="testimonial-info"><h4>Priya Sharma</h4><span>Mumbai, India</span></div>
+      </div>
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"BloomHer completely changed how I manage my PCOS. The nutrition plans and period tracker are incredibly accurate. I feel more in control of my body than ever!"</p>
+    </div>
+    <div class="testimonial-card animate-on-scroll">
+      <div class="testimonial-header">
+        <div class="testimonial-avatar"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&h=100&fit=crop&crop=face" alt="Ananya"/></div>
+        <div class="testimonial-info"><h4>Ananya Reddy</h4><span>Bangalore, India</span></div>
+      </div>
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"The AI chatbot is like having a wellness coach in my pocket. It helped me through a really stressful period at work with breathing exercises and journaling prompts."</p>
+    </div>
+    <div class="testimonial-card animate-on-scroll">
+      <div class="testimonial-header">
+        <div class="testimonial-avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Meera"/></div>
+        <div class="testimonial-info"><h4>Meera Nair</h4><span>Chennai, India</span></div>
+      </div>
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"I lost 8kg in 3 months following the nutrition plans. The community section kept me motivated. This app genuinely cares about women's health!"</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-header">
+    <div class="section-tag">🌸 About BloomHer</div>
+    <h2>Our Mission: Empowering Every Woman</h2>
+    <p>We believe every woman deserves access to holistic health tools that are beautiful, intuitive, and empowering.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-card animate-on-scroll">
+      <div class="about-icon">🎯</div>
+      <h3>Our Mission</h3>
+      <p>To make women's health accessible, personalized, and stigma-free through technology and community.</p>
+    </div>
+    <div class="about-card animate-on-scroll">
+      <div class="about-icon">👁️</div>
+      <h3>Our Vision</h3>
+      <p>A world where every woman has the tools, knowledge, and support to live her healthiest, happiest life.</p>
+    </div>
+    <div class="about-card animate-on-scroll">
+      <div class="about-icon">💗</div>
+      <h3>Our Values</h3>
+      <p>Empathy, inclusivity, science-backed guidance, and a deep respect for every woman's unique journey.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to Bloom? 🌸</h2>
+  <p>Join 10,000+ women who are taking charge of their health and happiness every single day.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+    <a href="login.html" class="btn-white">🚀 Get Started Free</a>
+    <a href="dashboard.html" class="btn-white" style="background:rgba(255,255,255,0.2);color:white;border:2px solid rgba(255,255,255,0.5);">📊 View Dashboard</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="section-header">
+    <div class="section-tag">📞 Get In Touch</div>
+    <h2>We'd Love to Hear From You</h2>
+    <p>Questions, feedback, or just want to say hi? We're here for you.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info animate-on-scroll">
+      <div class="contact-item"><span class="contact-icon">📧</span><div><strong>Email Us</strong><p>hello@bloomher.com</p></div></div>
+      <div class="contact-item"><span class="contact-icon">📱</span><div><strong>Follow Us</strong><p>@bloomher.wellness</p></div></div>
+      <div class="contact-item"><span class="contact-icon">🆘</span><div><strong>Women's Helpline</strong><p>1091 (24/7 Free)</p></div></div>
+      <div class="social-links">
+        <a href="#" class="social-btn">📘</a>
+        <a href="#" class="social-btn">📸</a>
+        <a href="#" class="social-btn">🐦</a>
+        <a href="#" class="social-btn">▶️</a>
+      </div>
+    </div>
+    <form class="contact-form animate-on-scroll" onsubmit="submitContact(event)">
+      <div class="form-row">
+        <input type="text" placeholder="Your Name" required/>
+        <input type="email" placeholder="Your Email" required/>
+      </div>
+      <input type="text" placeholder="Subject" required/>
+      <textarea placeholder="Your message..." rows="4" required></textarea>
+      <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">💌 Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="-webkit-text-fill-color:white;font-size:1.6rem;"><span>🌸</span> BloomHer</div>
+      <p>Your holistic wellness companion. Empowering women to live healthier, happier, and more fulfilled lives through technology and community.</p>
+      <div class="footer-socials" style="margin-top:16px;">
+        <a href="#">📘</a><a href="#">📸</a><a href="#">🐦</a><a href="#">▶️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <a href="login.html">Dashboard</a>
+      <a href="login.html">Period Tracker</a>
+      <a href="login.html">AI Chatbot</a>
+      <a href="login.html">Community</a>
+    </div>
+    <div class="footer-col">
+      <h4>Wellness</h4>
+      <a href="login.html">Fitness & Yoga</a>
+      <a href="login.html">Nutrition Plans</a>
+      <a href="login.html">Meditation</a>
+      <a href="login.html">Mental Health</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 BloomHer. Made with 💗 for women everywhere.</span>
+    <span>Women's Helpline: 1091 | Emergency: 112</span>
+  </div>
+</footer>
+
+<!-- SOS BUTTON -->
+<button class="sos-btn" onclick="triggerSOS()" title="Emergency SOS">🆘</button>
+
+<!-- AUDIO (silent by default) -->
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"/>
+</audio>
+
+<script src="js/app.js"></script>
+<script>
+  // Daily quotes
+  const quotes = [
+    "She believed she could, so she did. 🌸",
+    "Your body is your home. Take care of it. 💗",
+    "Wellness is not a destination, it's a way of life. 🌿",
+    "Strong women lift each other up. 👑",
+    "You are enough, exactly as you are. ✨",
+    "Take care of your body. It's the only place you have to live. 🌺",
+    "Self-care is not selfish. It is essential. 💆‍♀️",
+    "Every day is a new chance to bloom. 🌸"
+  ];
+  document.getElementById('dailyQuote').textContent = quotes[new Date().getDay() % quotes.length];
+
+  // Counter animation
+  function animateCounters() {
+    document.querySelectorAll('.stat-num[data-target]').forEach(el => {
+      const target = parseInt(el.getAttribute('data-target'));
+      let current = 0;
+      const step = target / 60;
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = current >= 1000 ? Math.floor(current/1000) + 'K+' : Math.floor(current) + (target === 98 ? '' : '+');
+        if (current >= target) clearInterval(timer);
+      }, 30);
+    });
+  }
+
+  // Contact form
+  function submitContact(e) {
+    e.preventDefault();
+    alert('💌 Thank you! Your message has been sent. We\'ll get back to you within 24 hours.');
+    e.target.reset();
+  }
+
+  // Music toggle
+  let musicPlaying = false;
+  function toggleMusic() {
+    const audio = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicBtn');
+    if (musicPlaying) { audio.pause(); btn.textContent = '🎵'; musicPlaying = false; }
+    else { audio.play().catch(()=>{}); btn.textContent = '🔇'; musicPlaying = true; }
+  }
+
+  // Animate counters when stats section is visible
+  const statsObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { animateCounters(); statsObserver.disconnect(); } });
+  }, { threshold: 0.3 });
+  const statsSection = document.querySelector('.stats-section');
+  if (statsSection) statsObserver.observe(statsSection);
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
+</script>
+</body>
+</html>
 
